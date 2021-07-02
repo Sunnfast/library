@@ -5,6 +5,10 @@ function Book(title, author, pages, readState) {
     this.author = author;
     this.pages = pages;
     this.readState = readState;
+
+    // this.info = function() {
+    //     console.log(Book.info)
+    // }
 }
 
 function addBookToLibrary() {
@@ -12,8 +16,23 @@ function addBookToLibrary() {
     let author = window.prompt("Enter the author of the book.")
     let pages = window.prompt("Enter the page count of the book.")
     let readState = window.prompt("Enter whether you have: read, not read, or are currently reading the book.")
+    
+    myLibrary.push(new Book(title, author, pages, readState));
 
-    myLibrary.push(title, author, pages, readState);
+
+}
+addBookToLibrary();
+let length = myLibrary.length
+
+function displayBook() {
+    let i = 0;
+
+    for (i; i > length; i++) {
+        document.getElementById("book-display").textContent = myLibrary[0].info()
+    }
 }
 
-addBookToLibrary();
+
+displayBook();
+
+// document.getElementById("book-display").textContent = 
