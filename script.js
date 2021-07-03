@@ -1,14 +1,13 @@
 let myLibrary = [] // book objects need to be stored in an empty array
 
+// const newBook = document.getElementById("new-book-btn").addEventListener
+
+
 function Book(title, author, pages, readState) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.readState = readState;
-
-    // this.info = function() {
-    //     console.log(Book.info)
-    // }
 }
 
 function addBookToLibrary() {
@@ -17,22 +16,31 @@ function addBookToLibrary() {
     let pages = window.prompt("Enter the page count of the book.")
     let readState = window.prompt("Enter whether you have: read, not read, or are currently reading the book.")
     
-    myLibrary.push(new Book(title, author, pages, readState));
+    const book = new Book(title, author, pages, readState);
+
+    myLibrary.push(book);
+
+    // this.info = function() {
+    //     console.log(title, author, pages, readState)
+    // }
 
 
 }
 addBookToLibrary();
 let length = myLibrary.length
 
-function displayBook() {
+function displayBook(library) {
     let i = 0;
 
-    for (i; i > length; i++) {
-        document.getElementById("book-display").textContent = myLibrary[0].info()
+    for (i; i < length; i++) {
+        document.getElementById("book-title").textContent = library[i].title;
+        document.getElementById("book-author").textContent = library[i].author;
+        document.getElementById("pages").textContent = library[i].pages + " pages";
+        document.getElementById("readState").textContent = library[i].readState;
+
+        console.log('i ran')
     }
 }
 
 
-displayBook();
-
-// document.getElementById("book-display").textContent = 
+displayBook(myLibrary);

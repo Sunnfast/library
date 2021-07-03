@@ -1,0 +1,13 @@
+/* body {
+    /* background-color: rgb(252, 252, 252); */
+/*} */
+
+.bookshelf-wrapper {
+    background-color: brown;
+    color: brown
+}
+
+.book {
+    background-color: #212121;
+    color: white;
+}
