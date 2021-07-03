@@ -1,6 +1,8 @@
 let myLibrary = [] // book objects need to be stored in an empty array
 
-// const newBook = document.getElementById("new-book-btn").addEventListener
+const newBook = document.getElementById("new-book-btn").addEventListener("click", function() {
+    addBookToLibrary();
+});
 
 
 function Book(title, author, pages, readState) {
@@ -20,19 +22,24 @@ function addBookToLibrary() {
 
     myLibrary.push(book);
 
+    length = myLibrary.length // might need to move inside addBookToLibrary function at the end to keep recalculating
+    displayBook(myLibrary);
+
     // this.info = function() {
     //     console.log(title, author, pages, readState)
     // }
 
-
 }
-addBookToLibrary();
-let length = myLibrary.length
+
+
 
 function displayBook(library) {
     let i = 0;
 
     for (i; i < length; i++) {
+
+
+
         document.getElementById("book-title").textContent = library[i].title;
         document.getElementById("book-author").textContent = library[i].author;
         document.getElementById("pages").textContent = library[i].pages + " pages";
@@ -43,4 +50,4 @@ function displayBook(library) {
 }
 
 
-displayBook(myLibrary);
+
