@@ -9,6 +9,7 @@ const newBook = document.getElementById("new-book-btn").addEventListener("click"
 });
 
 
+
 function Book(title, author, pages, readState) {
     this.title = title;
     this.author = author;
@@ -29,7 +30,7 @@ function addBookToArray() {
 }
 
 
-function displayAllBooks(library) { // passively displays pre-existing books
+function displayAllBooks(library) { // displays pre-existing books
     let i = 0;
     let length = library.length;
 
@@ -57,10 +58,23 @@ function displayAllBooks(library) { // passively displays pre-existing books
         bookDiv.appendChild(authorPara);
         bookDiv.appendChild(pagePara);
         bookDiv.appendChild(readPara);
+        bookDiv.dataset.indexNumber = i; // set data-attribute ID
 
         let bookShelf = document.getElementById("book");
         bookShelf.appendChild(bookDiv);
     
+
+        // REMOVE BOOK
+        
+        let removeBtn = document.createElement("button");
+        removeBtn.id ="remove-book-btn";
+        removeBtn.textContent = "Remove Book";
+        bookDiv.appendChild(removeBtn);
+
+        const removeBook = document.getElementById("remove-book-btn").addEventListener("click", function() {
+            bookShelf.removeChild.indexNumber[i];
+        });
+
 
         console.log('i ran')
     }
