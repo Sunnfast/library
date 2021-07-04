@@ -69,11 +69,34 @@ function displayAllBooks(library) { // passively displays pre-existing books
 
 function addNewestBook(library) {
     let length = library.length;
-    let div = document.createElement("div");
-    let textNode = document.createTextNode(library[length-1].title);
 
-    div.appendChild(textNode);
-    document.getElementById("book").appendChild(div);
+    let titlePara = document.createElement('h2');
+    let titleNode = document.createTextNode(library[length-1].title);
+    titlePara.appendChild(titleNode);
+
+    let authorPara = document.createElement('p');
+    let authorNode = document.createTextNode(library[length-1].author);
+    authorPara.appendChild(authorNode);
+
+
+    let pagePara = document.createElement('p');
+    let pageNode = document.createTextNode(library[length-1].pages + " pages");
+    pagePara.appendChild(pageNode);
+
+    let readPara = document.createElement('p');
+    let readNode = document.createTextNode("Status: " + library[length-1].readState);
+    readPara.appendChild(readNode);
+
+    let bookDiv = document.createElement('div');
+    bookDiv.appendChild(titlePara);
+    bookDiv.appendChild(authorPara);
+    bookDiv.appendChild(pagePara);
+    bookDiv.appendChild(readPara);
+
+    let bookShelf = document.getElementById("book");
+    bookShelf.appendChild(bookDiv);
+
+    console.log('im working')
 }
 
 displayAllBooks(myLibrary);  
