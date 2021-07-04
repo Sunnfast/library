@@ -1,7 +1,11 @@
 let myLibrary = [] // book objects need to be stored in an empty array
+myLibrary[0] = new Book("1984", "George Orwell", 328, "read");
+myLibrary[1] = new Book("Brave New World", "Aldous Huxley", 311, "read");
+
 
 const newBook = document.getElementById("new-book-btn").addEventListener("click", function() {
-    addBookToLibrary();
+    addBookToArray();
+    addNewestBook(myLibrary);
 });
 
 
@@ -12,7 +16,7 @@ function Book(title, author, pages, readState) {
     this.readState = readState;
 }
 
-function addBookToLibrary() {
+function addBookToArray() {
     let title = window.prompt("Enter the book's title.")
     let author = window.prompt("Enter the author of the book.")
     let pages = window.prompt("Enter the page count of the book.")
@@ -22,32 +26,57 @@ function addBookToLibrary() {
 
     myLibrary.push(book);
 
-    length = myLibrary.length // might need to move inside addBookToLibrary function at the end to keep recalculating
-    displayBook(myLibrary);
-
-    // this.info = function() {
-    //     console.log(title, author, pages, readState)
-    // }
-
 }
 
 
-
-function displayBook(library) {
+function displayAllBooks(library) { // passively displays pre-existing books
     let i = 0;
+    let length = library.length;
 
     for (i; i < length; i++) {
+   
+        let titlePara = document.createElement('h2');
+        let titleNode = document.createTextNode(library[i].title);
+        titlePara.appendChild(titleNode);
+
+        let authorPara = document.createElement('p');
+        let authorNode = document.createTextNode(library[i].author);
+        authorPara.appendChild(authorNode);
 
 
+        let pagePara = document.createElement('p');
+        let pageNode = document.createTextNode(library[i].pages + " pages");
+        pagePara.appendChild(pageNode);
 
-        document.getElementById("book-title").textContent = library[i].title;
-        document.getElementById("book-author").textContent = library[i].author;
-        document.getElementById("pages").textContent = library[i].pages + " pages";
-        document.getElementById("readState").textContent = library[i].readState;
+        let readPara = document.createElement('p');
+        let readNode = document.createTextNode("Status: " + library[i].readState);
+        readPara.appendChild(readNode);
+
+        let bookDiv = document.createElement('div');
+        bookDiv.appendChild(titlePara);
+        bookDiv.appendChild(authorPara);
+        bookDiv.appendChild(pagePara);
+        bookDiv.appendChild(readPara);
+
+        let bookShelf = document.getElementById("book");
+        bookShelf.appendChild(bookDiv);
+    
 
         console.log('i ran')
     }
 }
 
+
+function addNewestBook(library) {
+    let length = library.length;
+    let div = document.createElement("div");
+    let textNode = document.createTextNode(library[length-1].title);
+
+    div.appendChild(textNode);
+    document.getElementById("book").appendChild(div);
+}
+
+displayAllBooks(myLibrary);  
+// displays books in the background
 
 
