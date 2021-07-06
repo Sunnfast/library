@@ -62,7 +62,7 @@ function displayAllBooks(library) { // displays pre-existing books
 
         let bookShelf = document.getElementById("book");
         bookShelf.appendChild(bookDiv);
-    
+        bookDiv.dataset.indexNumber = i;
 
         // REMOVE BOOK
         
@@ -72,9 +72,9 @@ function displayAllBooks(library) { // displays pre-existing books
         bookDiv.appendChild(removeBtn);
 
         const removeBook = document.getElementById("remove-book-btn").addEventListener("click", () => {
-            myLibrary.splice(myLibrary.indexOf(library, 1));
-            displayAllBooks()
-            console.log(i);
+            myLibrary.splice(myLibrary.indexOf(library[i], 1));
+            displayAllBooks(myLibrary)
+            console.log('the index of the clicked item is ' + i);
         });
 
 
@@ -112,7 +112,22 @@ function addNewestBook(library) {
     let bookShelf = document.getElementById("book");
     bookShelf.appendChild(bookDiv);
 
+    bookDiv.dataset.indexNumber = length-1;
+
     console.log('im working')
+
+      // REMOVE BOOK
+        
+      let removeBtn = document.createElement("button");
+      removeBtn.id ="remove-book-btn";
+      removeBtn.textContent = "Remove Book";
+      bookDiv.appendChild(removeBtn);
+
+      const removeBook = document.getElementById("remove-book-btn").addEventListener("click", () => {
+          myLibrary.splice(myLibrary.indexOf(library[length-1], 1));
+          displayAllBooks(myLibrary)
+          console.log('you clicked me');
+      });
 }
 
 displayAllBooks(myLibrary);  
