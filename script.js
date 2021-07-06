@@ -58,7 +58,7 @@ function displayAllBooks(library) { // displays pre-existing books
         bookDiv.appendChild(authorPara);
         bookDiv.appendChild(pagePara);
         bookDiv.appendChild(readPara);
-        bookDiv.dataset.indexNumber = myLibrary[i]; // set data-attribute ID
+        bookDiv.setAttribute('id', myLibrary.indexOf(library)); // set data-attribute ID
 
         let bookShelf = document.getElementById("book");
         bookShelf.appendChild(bookDiv);
@@ -71,8 +71,9 @@ function displayAllBooks(library) { // displays pre-existing books
         removeBtn.textContent = "Remove Book";
         bookDiv.appendChild(removeBtn);
 
-        const removeBook = document.getElementById("remove-book-btn").addEventListener("click", function() {
-            myLibrary = myLibrary.splice(i)
+        const removeBook = document.getElementById("remove-book-btn").addEventListener("click", () => {
+            myLibrary.splice(myLibrary.indexOf(library, 1));
+            displayAllBooks()
             console.log(i);
         });
 

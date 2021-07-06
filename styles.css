@@ -32,3 +32,46 @@ h2 {
 .book > div > p {
     color: orange;
 }
+
+.book > div > button {
+    background-color: peru;
+    border: none;
+    padding: 0.5rem;
+    font-weight: 600;
+}
+
+.btn {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    position: fixed;
+    background-color: #212121;
+    width: 100%;
+    left: 0;
+    justify-content: space-evenly;
+    padding: 1rem;
+}
+.new-book {
+    position: relative;
+    background-color: peru;
+    border: none;
+    padding: 0.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.remove-all {
+    position: relative;
+    background-color: peru;
+    border: none;
+    padding: 0.5rem;
+    font-weight: 600;
+    text-align: center; 
+}
+
+.new-book:hover, .new-book:focus, 
+.remove-all:hover, .remove-all:focus {
+    cursor: pointer;
+    color: peru;
+    background-color: black;
+}
