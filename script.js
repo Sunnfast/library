@@ -58,13 +58,12 @@ function displayAllBooks(library) { // displays pre-existing books
         bookDiv.appendChild(authorPara);
         bookDiv.appendChild(pagePara);
         bookDiv.appendChild(readPara);
-        bookDiv.setAttribute('id', myLibrary.indexOf(library)); // set data-attribute ID
 
         let bookShelf = document.getElementById("book");
         bookShelf.appendChild(bookDiv);
-        bookDiv.dataset.indexNumber = i;
+        bookDiv.dataset.indexNumber = i; // set data-attribute
 
-        // REMOVE BOOK
+        // add REMOVE BOOK button
         
         let removeBtn = document.createElement("button");
         removeBtn.id ="remove-book-btn";
@@ -72,12 +71,16 @@ function displayAllBooks(library) { // displays pre-existing books
         bookDiv.appendChild(removeBtn);
 
         const removeBook = document.getElementById("remove-book-btn").addEventListener("click", () => {
-            
-            // myLibrary.splice(myLibrary.indexOf(library[1]), 1);
-            myLibrary.splice(myLibrary[i], 1)
-            // console.log(removed)
-            // console.log(myLibrary)
-            displayAllBooks(myLibrary)
+            console.log('the index of the clicked item is ' + i)
+            myLibrary.splice(myLibrary[i], 1) // removes object from array
+            document.querySelectorAll(`[data-index-number='${i}']`)[i].remove()
+
+            // document.querySelectorAll(`[data-index-number = "${i}"]`).remove(); // document.querySelector(`[data-foo="${i}"]`)
+            //currentBook.bookShelf.removeChild(currentBook);
+            //currentBook.item().remove()
+
+            // currentBook = document.querySelector("[i]");
+            // currentBook.remove();
             console.log('the index of the clicked item is ' + i);
         });
 
@@ -116,7 +119,7 @@ function addNewestBook(library) {
     let bookShelf = document.getElementById("book");
     bookShelf.appendChild(bookDiv);
 
-    bookDiv.dataset.indexNumber = length-1;
+    bookDiv.dataset.indexNumber = (myLibrary.length) - 1;
 
     console.log('im working')
 
