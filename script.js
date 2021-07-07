@@ -70,10 +70,17 @@ function displayAllBooks(library) { // displays pre-existing books
         removeBtn.textContent = "Remove Book";
         bookDiv.appendChild(removeBtn);
 
-        const removeBook = document.getElementById("remove-book-btn").addEventListener("click", () => {
+       
+
+
+        console.log('i ran')
+    }
+ const removeBook = document.getElementById("remove-book-btn").addEventListener("click", () => {
+            //console.log('the index of the clicked item is ' + i)
+            i = myLibrary.length - 1
             console.log('the index of the clicked item is ' + i)
             myLibrary.splice(myLibrary[i], 1) // removes object from array
-            document.querySelectorAll(`[data-index-number='${i}']`)[i].remove()
+            document.querySelectorAll(`[data-index-number='${i}']`)[i].remove();
 
             // document.querySelectorAll(`[data-index-number = "${i}"]`).remove(); // document.querySelector(`[data-foo="${i}"]`)
             //currentBook.bookShelf.removeChild(currentBook);
@@ -85,8 +92,6 @@ function displayAllBooks(library) { // displays pre-existing books
         });
 
 
-        console.log('i ran')
-    }
 }
 
 
