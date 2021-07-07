@@ -72,7 +72,11 @@ function displayAllBooks(library) { // displays pre-existing books
         bookDiv.appendChild(removeBtn);
 
         const removeBook = document.getElementById("remove-book-btn").addEventListener("click", () => {
-            myLibrary.splice(myLibrary.indexOf(library[i], 1));
+            
+            // myLibrary.splice(myLibrary.indexOf(library[1]), 1);
+            myLibrary.splice(myLibrary[i], 1)
+            // console.log(removed)
+            // console.log(myLibrary)
             displayAllBooks(myLibrary)
             console.log('the index of the clicked item is ' + i);
         });
@@ -124,7 +128,7 @@ function addNewestBook(library) {
       bookDiv.appendChild(removeBtn);
 
       const removeBook = document.getElementById("remove-book-btn").addEventListener("click", () => {
-          myLibrary.splice(myLibrary.indexOf(library[length-1], 1));
+        myLibrary.splice(myLibrary[length-1], 1);
           displayAllBooks(myLibrary)
           console.log('you clicked me');
       });
