@@ -64,34 +64,22 @@ function displayAllBooks(library) { // displays pre-existing books
         bookDiv.dataset.indexNumber = i; // set data-attribute
 
         // add REMOVE BOOK button
-        
+
         let removeBtn = document.createElement("button");
-        removeBtn.id ="remove-book-btn";
+        removeBtn.id ="remove-book-btn"; // wouldn't recommend xD
         removeBtn.textContent = "Remove Book";
+        removeBtn.onclick = function(e) {
+            thisBook = e.originalTarget.parentElement;
+            thisBookIndex = thisBook.dataset.indexNumber;
+            myLibrary.splice(myLibrary[thisBookIndex], 1);
+            console.log(thisBook.querySelector('h2').textContent + " removed."); // debug helper
+            thisBook.remove();
+        
+
+        };
         bookDiv.appendChild(removeBtn);
 
-       
-
-
-        console.log('i ran')
     }
- const removeBook = document.getElementById("remove-book-btn").addEventListener("click", () => {
-            //console.log('the index of the clicked item is ' + i)
-            i = myLibrary.length - 1
-            console.log('the index of the clicked item is ' + i)
-            myLibrary.splice(myLibrary[i], 1) // removes object from array
-            document.querySelectorAll(`[data-index-number='${i}']`)[i].remove();
-
-            // document.querySelectorAll(`[data-index-number = "${i}"]`).remove(); // document.querySelector(`[data-foo="${i}"]`)
-            //currentBook.bookShelf.removeChild(currentBook);
-            //currentBook.item().remove()
-
-            // currentBook = document.querySelector("[i]");
-            // currentBook.remove();
-            console.log('the index of the clicked item is ' + i);
-        });
-
-
 }
 
 
@@ -129,17 +117,17 @@ function addNewestBook(library) {
     console.log('im working')
 
       // REMOVE BOOK
-        
       let removeBtn = document.createElement("button");
-      removeBtn.id ="remove-book-btn";
+      removeBtn.id ="remove-book-btn"; // wouldn't recommend xD
       removeBtn.textContent = "Remove Book";
-      bookDiv.appendChild(removeBtn);
-
-      const removeBook = document.getElementById("remove-book-btn").addEventListener("click", () => {
-        myLibrary.splice(myLibrary[length-1], 1);
-          displayAllBooks(myLibrary)
-          console.log('you clicked me');
-      });
+      removeBtn.onclick = function(e) {
+          thisBook = e.originalTarget.parentElement;
+          thisBookIndex = thisBook.dataset.indexNumber;
+          myLibrary.splice(myLibrary[thisBookIndex], 1);
+          console.log(thisBook.querySelector('h2').textContent + " removed."); // debug helper
+          thisBook.remove();
+    }
+    bookDiv.appendChild(removeBtn);
 }
 
 displayAllBooks(myLibrary);  
