@@ -14,7 +14,7 @@ function Book(title, author, pages, readState) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.readState = readState;
+    this.readState = readStateToggle(readState);
 }
 
 function addBookToArray() {
@@ -27,6 +27,24 @@ function addBookToArray() {
 
     myLibrary.push(book);
 
+}
+
+function readStateToggle(readState) {
+    if (readState == "unread") {
+        readStateRead();
+    } else if (readState == "read") {
+        readStateUnread();
+    } else {
+        readStateRead();
+    }
+}
+
+function readStateRead() {
+    this.readState = "read";
+}
+
+function readStateUnread() {
+    this.readState = "unread";
 }
 
 
@@ -74,10 +92,15 @@ function displayAllBooks(library) { // displays pre-existing books
             myLibrary.splice(myLibrary[thisBookIndex], 1);
             console.log(thisBook.querySelector('h2').textContent + " removed."); // debug helper
             thisBook.remove();
-        
-
         };
+
+        let readStateToggleBtn = document.createElement("button");
+        readStateToggleBtn.textContent = "Change Read/Unread";
+        readStateToggleBtn.classList = "read-state-btn";
+        readStateToggleBtn.click = readStateToggle(); //this isn't the right syntax
+
         bookDiv.appendChild(removeBtn);
+        bookDiv.appendChild(readStateToggleBtn);
 
     }
 }
