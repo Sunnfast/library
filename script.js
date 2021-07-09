@@ -80,28 +80,20 @@ function displayAllBooks(library) { // displays pre-existing books
         readStateToggleBtn.textContent = "Change Read/Unread";
         readStateToggleBtn.classList = "read-state-btn";
         let readState1 = myLibrary[i].readState;
-        console.log(readState1); // debug
 
         readStateToggleBtn.onclick = function(e) {
             readState1 = myLibrary[i].readState;
             if (readState1 == "read") {
                 myLibrary[i].readState = "unread";
-                readPara.removeChild(readNode); // refactor: just replace childnode instead of deleting and re-appending
-                readNode = document.createTextNode("Status: " + library[i].readState);
-                // readPara.replaceChild(readNode, readNode); try using replaceChild
-                readPara.appendChild(readNode);
-                console.log('if statement ran')    // debug      
-            } else if (readState1 !== "read") {
+             
+            } else {
                 myLibrary[i].readState = "read";
-                readPara.removeChild(readNode);
-                readNode = document.createTextNode("Status: " + library[i].readState);
-                readPara.appendChild(readNode);
-                console.log('else statement ran, yay!')
             }
-            // readStateToggle(readState);
-            console.log('read change button clicked')
+
+            readPara.removeChild(readNode); // refactor: just replace childnode instead of deleting and re-appending
+            readNode = document.createTextNode("Status: " + library[i].readState);
+            readPara.appendChild(readNode);
         }
-        // readStateToggleBtn.addEventListener("click", readStateToggle) //not quite working yet
        
         bookDiv.appendChild(removeBtn);
         bookDiv.appendChild(readStateToggleBtn);
@@ -168,16 +160,12 @@ function addNewestBook(library) {
     
         if (readState1 == "read") {
             myLibrary[i].readState = "unread";
-            readPara.removeChild(readNode); // refactor: just replace childnode instead of deleting and re-appending; replaceChild()
-            readNode = document.createTextNode("Status: " + library[i].readState);
-            readPara.appendChild(readNode);
-        } else if (readState1 !== "read") {
-            myLibrary[i].readState = "read";
-            readPara.removeChild(readNode);
-            readNode = document.createTextNode("Status: " + library[i].readState);
-            readPara.appendChild(readNode);
+        } else {
+            myLibrary[i].readState = "read";      
         }
-      
+        readPara.removeChild(readNode);// refactor: just replace childnode instead of deleting and re-appending; replaceChild()
+        readNode = document.createTextNode("Status: " + library[i].readState);
+        readPara.appendChild(readNode);
     }
     bookDiv.appendChild(removeBtn);
     bookDiv.appendChild(readStateToggleBtn);
@@ -186,5 +174,3 @@ function addNewestBook(library) {
 
 displayAllBooks(myLibrary);  
 // displays books in the background
-
-
