@@ -1,6 +1,6 @@
 let myLibrary = [] // book objects need to be stored in an empty array
 myLibrary[0] = new Book("1984", "George Orwell", 328, "read");
-myLibrary[1] = new Book("Brave New World", "Aldous Huxley", 311, "read");
+myLibrary[1] = new Book("Brave New World", "Aldous Huxley", 311, "unread");
 
 
 const newBook = document.getElementById("new-book-btn").addEventListener("click", function() {
@@ -14,7 +14,7 @@ function Book(title, author, pages, readState) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.readState = readStateToggle(readState);
+    this.readState = readState;
 }
 
 function addBookToArray() {
@@ -29,31 +29,11 @@ function addBookToArray() {
 
 }
 
-function readStateToggle(readState) {
-    if (readState == "unread") {
-        readStateRead();
-    } else if (readState == "read") {
-        readStateUnread();
-    } else {
-        readStateRead();
-    }
-}
-
-function readStateRead() {
-    this.readState = "read";
-}
-
-function readStateUnread() {
-    this.readState = "unread";
-}
-
-
 function displayAllBooks(library) { // displays pre-existing books
-    let i = 0;
+    
     let length = library.length;
 
-    for (i; i < length; i++) {
-   
+    for (let i = 0; i < length; i++) {
         let titlePara = document.createElement('h2');
         let titleNode = document.createTextNode(library[i].title);
         titlePara.appendChild(titleNode);
@@ -84,21 +64,45 @@ function displayAllBooks(library) { // displays pre-existing books
         // add REMOVE BOOK button
 
         let removeBtn = document.createElement("button");
-        removeBtn.id ="remove-book-btn"; // wouldn't recommend xD
+        removeBtn.classList ="remove-book-btn";
         removeBtn.textContent = "Remove Book";
         removeBtn.onclick = function(e) {
-            thisBook = e.originalTarget.parentElement;
+            thisBook = e.target.parentElement;
             thisBookIndex = thisBook.dataset.indexNumber;
             myLibrary.splice(myLibrary[thisBookIndex], 1);
             console.log(thisBook.querySelector('h2').textContent + " removed."); // debug helper
             thisBook.remove();
         };
 
+        // readState toggle button
+
         let readStateToggleBtn = document.createElement("button");
         readStateToggleBtn.textContent = "Change Read/Unread";
         readStateToggleBtn.classList = "read-state-btn";
-        readStateToggleBtn.click = readStateToggle(); //this isn't the right syntax
+        let readState1 = myLibrary[i].readState;
+        console.log(readState1); // debug
 
+        readStateToggleBtn.onclick = function(e) {
+            //readState1 = myLibrary[i].readState;
+            if (readState1 == "read") {
+                myLibrary[i].readState = "unread";
+                readPara.removeChild(readNode); // refactor: just replace childnode instead of deleting and re-appending
+                readNode = document.createTextNode("Status: " + library[i].readState);
+                // readPara.replaceChild(readNode, readNode); try using replaceChild
+                readPara.appendChild(readNode);
+                console.log('if statement ran')    // debug      
+            } else if (readState1 !== "read") {
+                myLibrary[i].readState = "read";
+                readPara.removeChild(readNode);
+                readNode = document.createTextNode("Status: " + library[i].readState);
+                readPara.appendChild(readNode);
+                console.log('else statement ran, yay!')
+            }
+            // readStateToggle(readState);
+            console.log('read change button clicked')
+        }
+        // readStateToggleBtn.addEventListener("click", readStateToggle) //not quite working yet
+       
         bookDiv.appendChild(removeBtn);
         bookDiv.appendChild(readStateToggleBtn);
 

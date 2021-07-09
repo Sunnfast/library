@@ -70,7 +70,9 @@ h2 {
 }
 
 .new-book:hover, .new-book:focus, 
-.remove-all:hover, .remove-all:focus {
+.remove-all:hover, .remove-all:focus,
+.remove-book-btn:hover, .remove-book-btn:focus,
+.read-state-btn:hover, .read-state-btn:focus {
     cursor: pointer;
     color: peru;
     background-color: black;
