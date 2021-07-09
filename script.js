@@ -133,7 +133,7 @@ function addNewestBook(library) {
 
     bookDiv.dataset.indexNumber = (myLibrary.length) - 1;
 
-    console.log('im working')
+
 
       // REMOVE BOOK
       let removeBtn = document.createElement("button");
@@ -171,6 +171,20 @@ function addNewestBook(library) {
     bookDiv.appendChild(readStateToggleBtn);
 
 }
+
+// function removeAll(library) {
+//     library = [];
+//     // displayAllBooks(library);
+// }
+
+// let removeAllBtn = document.getElementById("remove-all");
+// removeAllBtn.addEventListener("click", function() {
+//     removeAll(myLibrary);
+//     console.log('remove all clicked')
+//     displayAllBooks(myLibrary);
+// });
+
+
 
 displayAllBooks(myLibrary);  
 // displays books in the background
